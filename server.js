@@ -4,14 +4,18 @@ require('dotenv').config()
 const app = express()
 const mongoose = require('mongoose')
 const itemRouter = require('./routers/itemRouter')
+const cors = require('cors')
+const userRouter = require('./routers/userRouter')
 
 //allow front to back communication
+app.use(cors())
 
 //body parser for post, put calls
 app.use(express.json())
 
 //connect to routers
 app.use('/items', itemRouter)
+app.use('/', userRouter)
 
 //connect to database
 mongoose.connect(process.env.MONGO_URI).then(() => {
