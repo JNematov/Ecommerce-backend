@@ -14,8 +14,8 @@ app.use(cors())
 app.use(express.json())
 
 //connect to routers
-app.use('/items', itemRouter)
 app.use('/', userRouter)
+app.use('/items', itemRouter)
 
 //connect to database
 mongoose.connect(process.env.MONGO_URI).then(() => {
